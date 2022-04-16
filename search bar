@@ -1,0 +1,49 @@
+from tkinter import *
+root = Tk()
+root.title('программа')
+root.resizable(True, True)
+#root.geometry('600x400')
+
+def Add1():
+    print('Add')
+    list1.insert(END,en1.get())
+    en1.delete(0, END)
+
+def Del1():
+    print('Del')
+    indexes=list1.curselection()
+    print(indexes)
+    for i in indexes:
+        print(i)
+        list1.delete(i)
+
+def Save1():
+    f=open('list1.txt', 'w')
+    f.writelines('\n'.join(list1.selection_get()))
+    f.close
+
+data=['Яблоки', 'апельсины', 'Лимоны']
+list1=Listbox(root, font='Tahoma 20', width=20, height=4, selectmode=MULTIPLE)
+
+en1=Entry()
+button1=Button(root, text='Add', font='Tahoma 20', command=Add1)
+button2=Button(root, text='Del', font='Tahoma 20', command=Del1)
+button3=Button(root, text='Save', font='Tahoma 20', command=Save1)
+
+for d in data:
+    list1.insert(END,d)
+list1.selection_set(0,2)
+print(list1.selection_get())
+
+indexes=list1.curselection()
+print(indexes)
+for index in indexes:
+    print(index, data[index])
+
+list1.pack()
+en1.pack()
+button1.pack()
+button2.pack()
+button3.pack()
+
+root.mainloop()
