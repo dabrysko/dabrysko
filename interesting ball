@@ -13,6 +13,7 @@ def PPP(event):
     x0 = event.x
     y0 = event.y
     motion()
+    
 def motion():
     x=c.coords(ball)[0]
     y=c.coords(ball)[1]
